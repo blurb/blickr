@@ -1,0 +1,12 @@
+<html>
+<head>
+  <% if @job.status == 'PENDING' %>
+    <meta http-equiv="refresh" content="5" />
+  <% end %>
+</head>
+
+<body>
+  Creating book... <%= @job.status %>
+</body>
+</html>
+

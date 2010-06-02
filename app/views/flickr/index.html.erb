@@ -1,0 +1,25 @@
+<html>
+<head><title>Blickr</title></head>
+<body>
+<h1>Blickr</h1>
+<h2>Photosets</h2>
+<ul>
+<% @photosets.each do |photoset| %>
+	<li>
+  	<% form_tag :action => 'make_book' do %>
+  	  <%= hidden_field_tag :photoset_id, photoset.photoset_id%>
+  	  <img src="<%= photoset.primary_thumbnail_url %>"> - <%= photoset.title %> - <%= photoset.count %> pages 
+  		<% if photoset.purchasable? %>
+    		$<%= photoset.price %>
+  		  <%= submit_tag "create!" %> 
+  		<% elsif !photoset.minimum_photos? %>
+  			Not enough photos
+  		<% else %>
+  			Too many photos
+  		<% end %>
+  	<% end %>
+	</li>
+<% end %>
+</ul>
+</body>
+</html>
